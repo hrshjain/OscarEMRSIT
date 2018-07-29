@@ -1,6 +1,7 @@
 package stepDefinition;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -25,7 +26,7 @@ public class Test_Steps {
 	@When("^User Navigate to Login Page$")
 	public void user_Navigate_to_Login_Page() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-		String baseUrl = "https://www.junoemr.com/harsh_jain";
+		String baseUrl = "https://localhost:8442/oscar";
         String expectedTitle = "Juno EMR Services Client Login";
         String actualTitle = "";
 
@@ -47,18 +48,19 @@ public class Test_Steps {
 	public void user_enters_UserName_and_Password() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
         //Get web element for username, password and pin
-        WebElement username = driver.findElement(By.id("username"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement pin = driver.findElement(By.id("pin"));
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement pin = driver.findElement(By.name("pin"));
         
         //Enter values for the web element
-        username.sendKeys("harsh_jain");
-        password.sendKeys("zcprqswge");
-        pin.sendKeys("6275");
+        username.sendKeys("oscardoc");
+        password.sendKeys("LEADlab!");
+        pin.sendKeys("1117");
         
         //Click on login button
-        WebElement submit = driver.findElement(By.name("commit"));
-        submit.click();
+//        WebElement submit = driver.findElement(By.name("commit"));
+//        submit.click();
+        pin.sendKeys(Keys.RETURN);
 	}
 
 	@Then("^User can now view the HomePage$")
