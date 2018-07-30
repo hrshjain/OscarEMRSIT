@@ -21,19 +21,23 @@ Feature: Login functionality and Smoke Testing
   I want to use this template for my feature file
 
   @tag1
-  Scenario: User Logs into OscarEMR
+  Scenario Outline: User Logs into OscarEMR
     Given User starts the browser
     When User Navigate to Login Page
-    And User enters UserName and Password
+    And User enters "<username>" and "<password>" and "<pin>"
     Then User can now view the HomePage
+    
+  Examples:
+    | username | password | pin  |
+    | oscardoc | LEADlab! | 1117 |
 
-  @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  #@tag2
+  #Scenario Outline: Title of your scenario outline
+    #Given I want to write a step with <name>
+    #When I check for the <value> in step
+    #Then I verify the <status> in step
+#
+    #Examples: 
+      #| name  | value | status  |
+      #| name1 |     5 | success |
+      #| name2 |     7 | Fail    |

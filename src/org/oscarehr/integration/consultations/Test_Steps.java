@@ -1,10 +1,12 @@
-package stepDefinition;
+package org.oscarehr.integration.consultations;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -43,31 +45,35 @@ public class Test_Steps {
         }
         
 	}
-
-	@When("^User enters UserName and Password$")
-	public void user_enters_UserName_and_Password() throws Throwable {
+    @When("^User enters \"(.*)\" and \"(.*)\" and \"(.*)\"$")
+	public void user_enters_Username_Password_and_Pin(String username, String password, String pin) 
+			throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
         //Get web element for username, password and pin
-        WebElement username = driver.findElement(By.name("username"));
-        WebElement password = driver.findElement(By.name("password"));
-        WebElement pin = driver.findElement(By.name("pin"));
+        WebElement oscarusername = driver.findElement(By.name("username"));
+        WebElement oscarpassword = driver.findElement(By.name("password"));
+        WebElement oscarpin = driver.findElement(By.name("pin"));
         
         //Enter values for the web element
-        username.sendKeys("oscardoc");
-        password.sendKeys("LEADlab!");
-        pin.sendKeys("1117");
+        oscarusername.sendKeys("oscardoc");
+        oscarpassword.sendKeys("LEADlab!");
+        oscarpin.sendKeys("1117");
         
         //Click on login button
 //        WebElement submit = driver.findElement(By.name("commit"));
 //        submit.click();
-        pin.sendKeys(Keys.RETURN);
+        oscarpin.sendKeys(Keys.RETURN);
 	}
 
 	@Then("^User can now view the HomePage$")
 	public void user_can_now_view_the_HomePage() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-        
-        if(driver.findElement(By.id("oscar_aged_consults")).isDisplayed()==true){
+		
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("demographicQuickSearch"))));		
+		WebElement consultationUrl = driver.findElement(By.id("demographicQuickSearch"));
+		
+        if(consultationUrl.isDisplayed()==true){
             System.out.println("Test2 Passed!");
         } else {
             System.out.println("Test Failed");
