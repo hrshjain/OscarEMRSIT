@@ -55,9 +55,9 @@ public class Test_Steps {
         WebElement oscarpin = driver.findElement(By.name("pin"));
         
         //Enter values for the web element
-        oscarusername.sendKeys("oscardoc");
-        oscarpassword.sendKeys("LEADlab!");
-        oscarpin.sendKeys("1117");
+        oscarusername.sendKeys(username);
+        oscarpassword.sendKeys(password);
+        oscarpin.sendKeys(pin);
         
         //Click on login button
 //        WebElement submit = driver.findElement(By.name("commit"));
